@@ -12,6 +12,8 @@ class Pengguna extends Authenticatable
     use HasFactory;
     use Notifiable;
     protected $table = 'pengguna';
-
     protected $guarded = [];
+    protected $primaryKey = 'no_hp';
+    public $incrementing = false;
+    protected $keyType = 'string';
 }

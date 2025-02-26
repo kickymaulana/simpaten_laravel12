@@ -14,18 +14,14 @@ test('halaman login harus tampil', function () {
 
 test('Coba login', function () {
 
-    // $this->seed([PenggunaSeeder::class]);
+    $this->seed([PenggunaSeeder::class]);
 
-    // $user = Pengguna::where('no_hp', '6282108210821')->first();
-    //
-    $user = Pengguna::factory()->create();
+    $user = Pengguna::where('no_hp', '6282108210821')->first();
 
     $response = $this->post('/login', [
         'no_hp' => '6282108210821',
         'password' => 'kicky123',
     ]);
 
-    // $response->assertSessionHasNoErrors();
     $this->assertAuthenticatedAs($user);
-    // $response->assertAuthenticated();
 });
