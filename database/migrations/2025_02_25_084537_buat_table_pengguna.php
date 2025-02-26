@@ -11,17 +11,31 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::create('pengguna', function (Blueprint $table) {
-            $table->string('username', 20);
+            $table->string('no_hp', 20)->unique();
+            $table->string('password');
             $table->string('nama');
             $table->enum('level', [
-                'kepala_urusan',
-                'kepala_desa',
-                'camat',
-                'sekretaris_camat',
+                'operator',
+                'sekretaris',
                 'kepala_seksi',
-                'masyarakat',
+                'kepala',
                 'admin',
-            ])->default('masyarakat');
+                'user',
+            ])->default('user');
+            $table->enum('urusan', [
+                'desa',
+                'kecamatan',
+            ])->default('desa');
+            $table->enum('jenis_jabatan', [
+                'desa_lurah',
+                'kecamatan',
+                'camat',
+                'kasi_pemerintahan',
+                'kasi_kebersihan',
+                'kasi_keamanan_dan_ketertiban',
+                'kasi_kesejahteraan_sosial',
+                'kasi_pemberdayaan_masyarakat_desa',
+            ])->default('desa_lurah');
             $table->timestamps();
         });
     }
